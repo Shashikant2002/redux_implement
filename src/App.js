@@ -1,24 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from "./components/Header.js"
+import Heading from './components/Heading';
+import ProductListing from './components/ProductListing';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import ProductDetail from './components/ProductDetail';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Header />
+        <Routes>
+          <Route exact path='/' element={<><Heading heading="Redux Implement" /><ProductListing /> </>} />
+          <Route exact path='/product/:proid' element={<><Heading heading="Redux Implement" /><ProductDetail /> </>} />
+          
+          <Route exact path='*' element={<Heading heading="404 Not Found" />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
